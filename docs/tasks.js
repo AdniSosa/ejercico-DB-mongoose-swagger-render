@@ -1,6 +1,6 @@
 // documentación de los diferentes endpoints
 
-const { get } = require("mongoose");
+const Task = require("../models/Task");
 
 const paths = {
 
@@ -125,7 +125,7 @@ const paths = {
       },
       description: "Mark the task completed searched by its id",
       operationId: "markTaskCompleted",
-      parameters: {
+      parameters: [{
           name: "id",
           in: "path",
           description: "Task ID",
@@ -133,7 +133,7 @@ const paths = {
           schema: {
             $ref: '#/components/schemas/Task/properties/_id'
           },
-      },
+      }],
       requestBody: {},
       responses: {
         200: {
@@ -166,7 +166,7 @@ const paths = {
       },
       description: "Change the title of the task searched by its id",
       operationId: "changeTitleOfTheTask",
-      parameters: {
+      parameters: [{
           name: "id",
           in: "path",
           description: "Task ID",
@@ -174,8 +174,9 @@ const paths = {
           schema: {
             $ref: '#/components/schemas/Task/properties/_id'
           },
-      },
+      }],
       requestBody: {
+        required: true,
         content: {
           "application/json": {
             schema: {$ref: "#/components/schemas/Task/properties/title"},
@@ -213,7 +214,7 @@ const paths = {
       },
       description: "Delete the task searched by its id",
       operationId: "deleteTask",
-      parameters: {
+      parameters: [{
           name: "id",
           in: "path",
           description: "Task ID",
@@ -221,7 +222,7 @@ const paths = {
           schema: {
             $ref: '#/components/schemas/Task/properties/_id'
           },
-      },
+      }],
       requestBody: {},
       responses: {
         200: {
